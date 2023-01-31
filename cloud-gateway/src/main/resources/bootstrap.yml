@@ -1,0 +1,25 @@
+server:
+  port: 9010
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          # 是否使用service-id的小写，默认是大写
+          lower-case-service-id: true
+    nacos:
+      discovery:
+        server-addr: 115.159.124.98:8848
+      config:
+        server-addr: 115.159.124.98:8848
+        file-extension: yaml
+        group: ${spring.profiles.active}
+        prefix: ${spring.application.name}
+logging:
+  level:
+    com.alibaba.nacos.client.config.impl: WARN
